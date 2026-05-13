@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="theme-color" content="#f5f9f5"/>
+  <title>碳索世界 綠遨遊</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<div class="app">
+
+  <!-- ══ 登入頁 ══ -->
+  <div id="login" class="screen active">
+    <div class="login-wrap">
+      <!-- 背景裝飾葉片 -->
+      <div class="login-bg-leaf login-bg-leaf--tl">
+        <svg width="160" height="160" viewBox="0 0 160 160" fill="none"><path d="M10 150 Q10 10 150 10 Q150 80 80 120 Q50 138 10 150Z" fill="#2d5e3a" opacity=".12"/><path d="M25 155 Q20 30 145 25 Q140 90 75 128 Q50 143 25 155Z" fill="#4caf6e" opacity=".08"/></svg>
+      </div>
+      <div class="login-bg-leaf login-bg-leaf--br">
+        <svg width="140" height="140" viewBox="0 0 140 140" fill="none"><path d="M130 10 Q130 130 10 130 Q10 65 65 30 Q92 15 130 10Z" fill="#2d5e3a" opacity=".10"/></svg>
+      </div>
+      <div class="login-bg-leaf login-bg-leaf--tr">
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none"><path d="M80 5 Q85 85 5 85 Q5 45 42 22 Q60 12 80 5Z" fill="#4caf6e" opacity=".13"/></svg>
+      </div>
+      <div class="login-bg-dots"></div>
+
+      <!-- Logo -->
+      <div class="login-logo-wrap">
+        <div class="login-logo-frame">
+          <img src="圖片1.png" class="login-logo" alt="碳索世界"/>
+        </div>
+        <div class="login-logo-leaves">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M18 34 C12 28 4 22 6 12 C10 4 22 2 28 8 C34 14 30 28 18 34Z" fill="#2d5e3a" opacity=".7"/><line x1="18" y1="32" x2="18" y2="10" stroke="#7ee8a2" stroke-width="1" opacity=".5"/></svg>
+          <svg width="28" height="28" viewBox="0 0 36 36" fill="none" style="transform:rotate(-30deg)"><path d="M18 34 C12 28 4 22 6 12 C10 4 22 2 28 8 C34 14 30 28 18 34Z" fill="#4caf6e" opacity=".55"/><line x1="18" y1="32" x2="18" y2="10" stroke="#7ee8a2" stroke-width="1" opacity=".4"/></svg>
+        </div>
+      </div>
+
+      <div class="login-title">碳索世界</div>
+      <div class="login-subtitle">低碳旅行，從這裡開始</div>
+      <div class="login-card">
+        <input class="input-field" id="login-user" placeholder="帳號" autocomplete="username"/>
+        <input class="input-field" id="login-pass" type="password" placeholder="密碼"
+               autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
+        <button class="btn btn-primary" onclick="doLogin()">登入</button>
+        <div class="login-err" id="login-err"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 開場頁 ══ -->
+  <div id="splash" class="screen">
+    <div class="splash-wrap">
+      <div class="splash-bg-c1"></div>
+      <div class="splash-bg-c2"></div>
+      <div class="splash-bg-c3"></div>
+      <div class="splash-inner">
+        <div style="text-align:center;margin-bottom:28px">
+          <div style="font-size:28px;font-weight:900;color:var(--primary)">碳索世界</div>
+          <div style="font-size:12px;color:var(--mid);margin-top:4px">低碳旅行，從這裡開始</div>
+        </div>
+        <div class="intro-wrap">
+          <div class="intro-slides" id="intro-slides">
+            <div class="intro-slide">
+              <div class="slide-heading">旅行中，你的每一個選擇都在影響地球</div>
+              <div class="slide-text">從交通、住宿到飲食，到任何行動，讓我們一起開始低碳生活吧！</div>
+            </div>
+            <div class="intro-slide">
+              <div class="slide-heading">比較所有交通方式</div>
+              <div class="slide-text">高鐵、台鐵、公車、汽車、機車、腳踏車、走路——同時比較碳排和費用，找最適合你的路線。</div>
+            </div>
+            <div class="intro-slide">
+              <div class="slide-heading">搜尋真實旅館和餐廳</div>
+              <div class="slide-text">輸入目的地後，搜尋附近旅館和餐廳，自動計算碳足跡，做出更環保的選擇。</div>
+            </div>
+            <div class="intro-slide">
+              <div class="slide-heading">分享旅程，激勵彼此</div>
+              <div class="slide-text">每次旅行結束後分享你的低碳成果，在排行榜上展示你的環保成就！</div>
+            </div>
+          </div>
+          <div class="intro-nav">
+            <button class="intro-arrow" onclick="goSlide('prev')">&#8249;</button>
+            <div class="intro-dots" id="intro-dots"></div>
+            <button class="intro-arrow" onclick="goSlide('next')">&#8250;</button>
+          </div>
+        </div>
+        <button class="splash-cta" onclick="startApp()">開始你的旅程 →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 個人 ══ -->
+  <div id="home" class="screen">
+    <div class="profile-hero">
+      <button class="profile-logout" onclick="doLogout()">登出</button>
+      <div class="profile-top">
+        <div class="profile-avatar" id="prof-avatar">🧑</div>
+        <div>
+          <div class="profile-name" id="prof-name">旅行者</div>
+          <div class="profile-badge" id="prof-badge">旅行者</div>
+          <div class="profile-level" id="prof-level">Lv.1 新手旅人</div>
+          <div class="prof-xp-track"><div class="prof-xp-bar" id="prof-xp-bar"></div></div>
+          <div class="prof-xp-label" id="prof-xp-label"></div>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="pstat"><div class="pstat-num" id="prof-trips">0</div><div class="pstat-label">次旅遊</div></div>
+        <div class="pstat"><div class="pstat-num" id="prof-co2">0</div><div class="pstat-label">kg CO₂</div></div>
+        <div class="pstat"><div class="pstat-num" id="prof-ach">0</div><div class="pstat-label">個成就</div></div>
+        <div class="pstat"><div class="pstat-num" id="prof-avgscore">-</div><div class="pstat-label">平均分</div></div>
+      </div>
+    </div>
+    <div class="scroll-area">
+      <div class="card" onclick="showScreen('shop')" style="cursor:pointer">
+        <div class="card-title">🌿 小綠點數 <span style="float:right;font-size:20px;font-weight:800;color:var(--primary)" id="prof-points">0</span></div>
+        <div style="font-size:11px;color:var(--mid)">選擇合作店家即可累積點數，點入兌換禮券</div>
+      </div>
+      <div class="card">
+        <div class="card-title">成就進度</div>
+        <div class="ach-mini-grid" id="prof-ach-grid"></div>
+        <div style="text-align:right;margin-top:8px">
+          <button onclick="resetAchievements()" style="background:none;border:none;color:var(--hint);font-size:10px;cursor:pointer;text-decoration:underline">重置</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">旅遊記錄</div>
+        <div id="prof-hist-list"></div>
+      </div>
+      <div style="padding:0 14px 14px">
+        <button class="btn btn-primary" onclick="showScreen('travel')">＋ 開始新旅程</button>
+      </div>
+    </div>
+    <nav class="navbar">
+      <button class="nav-item active" data-screen="home" onclick="showScreen('home');renderProfile()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg></div>個人</button>
+      <button class="nav-item" data-screen="travel" onclick="showScreen('travel')"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>旅遊</button>
+      <button class="nav-item" data-screen="overview" onclick="showScreen('overview');updateOverview()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="6" width="4" height="15"/><rect x="17" y="2" width="4" height="19"/></svg></div>總覽</button>
+      <button class="nav-item" data-screen="social" onclick="showScreen('social');renderSocialPage()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>分享</button>
+    </nav>
+  </div>
+
+  <!-- ══ 旅遊計算 ══ -->
+  <div id="travel" class="screen">
+    <div class="header">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <h1>規劃行程</h1>
+        <button id="spots-fab" onclick="openSpotsModal()" style="display:none;background:var(--primary);color:white;border:none;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 2px 8px rgba(45,94,58,.35)">景點推薦</button>
+      </div>
+      <div class="plan-tabs">
+        <button class="plan-tab active" data-tab="route" onclick="switchPlanTab('route')">交通</button>
+        <button class="plan-tab" data-tab="hotel" onclick="switchPlanTab('hotel')">住宿</button>
+        <button class="plan-tab" data-tab="food" onclick="switchPlanTab('food')">飲食</button>
+      </div>
+    </div>
+    <div class="scroll-area">
+
+      <!-- 交通 -->
+      <div id="plan-route">
+        <div class="card">
+          <div class="card-title">
+            出發地 → 目的地
+            <span class="src-badge" onclick="alert('路線：Google Maps Directions API\n碳排：環境部溫室氣體排放清冊\n景點：TDX 觀光署 API')">資料來源 ℹ</span>
+          </div>
+          <input class="input-field" id="origin" placeholder="📍 出發地，例：台北車站"/>
+          <input class="input-field" id="dest" placeholder="🏁 目的地，例：清境農場"/>
+          <input class="input-field" id="passengers" type="number" value="1" min="1" max="20" placeholder="👥 人數"/>
+              <div style="flex:1"><div style="font-size:11px;color:var(--mid);margin-bottom:3px">出發日期</div><input type="date" class="input-field" id="trip-start-date" style="margin-bottom:8px"/></div>
+          <button class="btn btn-primary" onclick="calcTrip()">計算碳排 🌿</button>
+        </div>
+        <div class="loading" id="loading-trip">⏳ 查詢路線中，請稍候...</div>
+        <div id="results-area" style="display:none">
+          <div style="font-size:14px;font-weight:600;color:var(--primary);text-align:center;margin:10px 0" id="route-title"></div>
+          <div class="sort-row">
+            <div class="sort-chip active" data-sort="carbon" onclick="sortOptions('carbon')">🌿 低碳選擇</div>
+            <div class="sort-chip" data-sort="combo" onclick="sortOptions('combo')">⚖️ 綜合排名</div>
+          </div>
+          <div id="options-list"></div>
+          <div class="src-note">
+            路線資料：Google Maps Directions API｜碳排係數：環境部國家溫室氣體排放清冊<br>
+            台鐵 41g・客運 68g・機車 91g・自駕 170g（gCO₂/人公里）
+          </div>
+        </div>
+      </div>
+
+      <!-- 住宿 -->
+      <div id="plan-hotel" style="display:none">
+        <div class="card">
+          <div class="card-title">選擇住宿</div>
+          <div class="plan-search-row">
+            <input id="hotel-search-input" class="input-field" placeholder="搜尋旅館名稱或地點…" style="margin:0;flex:1;font-size:12px;padding:7px 12px" onkeydown="if(event.key==='Enter')searchNearbyHotels()"/>
+            <button id="hotel-search-btn" onclick="searchNearbyHotels()" style="background:var(--primary);color:white;border:none;border-radius:10px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0">🔍 搜尋</button>
+          </div>
+          <div class="place-scroll-list" id="hotel-combined-scroll">
+            <div id="partner-hotels-list"></div>
+            <div id="hotel-divider" style="display:none;text-align:center;padding:5px 0;font-size:10px;color:var(--hint);border-top:1px dashed var(--border);margin:4px 0">─ Google 搜尋結果 ─</div>
+            <div id="hotel-places-list"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">選擇住宿類型
+            <span class="src-badge" onclick="alert('資料來源：行政院環保署旅宿碳排資料')">資料來源 ℹ</span>
+          </div>
+          <div class="type-grid" id="hotel-type-grid">
+            <div class="type-card" onclick="selectHotelType('camping',this)"><div class="type-icon">🏕</div><div class="type-name">露營</div><div class="type-co2">2 kg/晚</div></div>
+            <div class="type-card" onclick="selectHotelType('hostel',this)"><div class="type-icon">🏠</div><div class="type-name">民宿</div><div class="type-co2">6 kg/晚</div></div>
+            <div class="type-card selected" onclick="selectHotelType('eco',this)"><div class="type-icon">🌿</div><div class="type-name">環保旅館</div><div class="type-co2">8 kg/晚</div></div>
+            <div class="type-card" onclick="selectHotelType('standard',this)"><div class="type-icon">🏨</div><div class="type-name">一般旅館</div><div class="type-co2">12 kg/晚</div></div>
+            <div class="type-card" onclick="selectHotelType('business',this)"><div class="type-icon">🏢</div><div class="type-name">商務飯店</div><div class="type-co2">18 kg/晚</div></div>
+            <div class="type-card" onclick="selectHotelType('luxury',this)"><div class="type-icon">⭐</div><div class="type-name">五星飯店</div><div class="type-co2">25 kg/晚</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">新增住宿記錄</div>
+          <input class="input-field" id="hotel-name" placeholder="旅館名稱（選填）"/>
+          <input class="input-field" id="hotel-nights" type="number" value="1" min="1" max="30" placeholder="住宿晚數"/>
+          <button class="btn btn-primary" onclick="addHotelLog()">＋ 加入住宿記錄</button>
+        </div>
+        <div class="card">
+          <div class="card-title">已新增住宿</div>
+          <div id="hotel-logs"></div>
+          <div style="font-size:12px;font-weight:600;color:var(--primary);margin-top:8px" id="hotel-total"></div>
+        </div>
+        <div style="padding:14px">
+          <button class="btn btn-ghost" onclick="updateOverview();showScreen('overview')">查看行程總覽</button>
+        </div>
+      </div>
+
+      <!-- 飲食 -->
+      <div id="plan-food" style="display:none">
+        <div class="card">
+          <div class="card-title">選擇餐廳</div>
+          <div class="plan-search-row">
+            <input id="food-search-input" class="input-field" placeholder="搜尋餐廳名稱或地點…" style="margin:0;flex:1;font-size:12px;padding:7px 12px" onkeydown="if(event.key==='Enter')searchNearbyRestaurants()"/>
+            <button id="food-search-btn" onclick="searchNearbyRestaurants()" style="background:var(--primary);color:white;border:none;border-radius:10px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0">🔍 搜尋</button>
+          </div>
+          <div class="place-scroll-list" id="food-combined-scroll">
+            <div id="partner-restaurants-list"></div>
+            <div id="food-divider" style="display:none;text-align:center;padding:5px 0;font-size:10px;color:var(--hint);border-top:1px dashed var(--border);margin:4px 0">─ Google 搜尋結果 ─</div>
+            <div id="food-places-list"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">選擇飲食類型
+            <span class="src-badge" onclick="alert('資料來源：農委會食物碳足跡資料庫')">資料來源 ℹ</span>
+          </div>
+          <div class="type-grid" id="food-type-grid">
+            <div class="type-card" onclick="selectFoodType('vegan',this)"><div class="type-icon">🥬</div><div class="type-name">有機素食</div><div class="type-co2">0.8 kg/餐</div></div>
+            <div class="type-card" onclick="selectFoodType('veggie',this)"><div class="type-icon">🥗</div><div class="type-name">素食</div><div class="type-co2">1.2 kg/餐</div></div>
+            <div class="type-card" onclick="selectFoodType('seafood',this)"><div class="type-icon">🦞</div><div class="type-name">海鮮</div><div class="type-co2">2.8 kg/餐</div></div>
+            <div class="type-card selected" onclick="selectFoodType('general',this)"><div class="type-icon">🍱</div><div class="type-name">一般餐食</div><div class="type-co2">2.5 kg/餐</div></div>
+            <div class="type-card" onclick="selectFoodType('meat',this)"><div class="type-icon">🥩</div><div class="type-name">葷食</div><div class="type-co2">3.5 kg/餐</div></div>
+            <div class="type-card" onclick="selectFoodType('fastfood',this)"><div class="type-icon">🍔</div><div class="type-name">速食</div><div class="type-co2">3.2 kg/餐</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">新增飲食記錄</div>
+          <input class="input-field" id="food-meal-name" placeholder="餐點名稱"/>
+          <input class="input-field" id="food-meals" type="number" value="1" min="1" placeholder="份數"/>
+          <input class="input-field" id="food-price" type="number" placeholder="💰 價格（元）"/>
+          <button class="btn btn-primary" onclick="addFoodLog()">+ 新增這餐</button>
+        </div>
+        <div class="card">
+          <div class="card-title">今日飲食記錄</div>
+          <div id="food-logs"></div>
+          <div style="font-size:12px;font-weight:600;color:var(--primary);margin-top:8px" id="food-total"></div>
+        </div>
+        <div style="padding:14px">
+          <button class="btn btn-ghost" onclick="updateOverview();showScreen('overview')">查看行程總覽</button>
+        </div>
+      </div>
+
+    </div>
+    <nav class="navbar">
+      <button class="nav-item" data-screen="home" onclick="showScreen('home');renderProfile()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg></div>個人</button>
+      <button class="nav-item active" data-screen="travel" onclick="showScreen('travel')"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>旅遊</button>
+      <button class="nav-item" data-screen="overview" onclick="showScreen('overview');updateOverview()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="6" width="4" height="15"/><rect x="17" y="2" width="4" height="19"/></svg></div>總覽</button>
+      <button class="nav-item" data-screen="social" onclick="showScreen('social');renderSocialPage()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>分享</button>
+    </nav>
+  </div>
+
+  <!-- ══ 行程總覽 ══ -->
+  <div id="overview" class="screen">
+    <div class="ov-header">
+      <div class="ov-stats">
+        <div class="ov-stat ov-stat--co2">
+          <div class="ov-stat-label">🌿 總碳排</div>
+          <div class="ov-stat-num" id="ov-co2">0.0</div>
+          <div class="ov-stat-unit">kg CO₂</div>
+        </div>
+        <div class="ov-stat ov-stat--cost">
+          <div class="ov-stat-label">💰 總費用</div>
+          <div class="ov-stat-num" id="ov-cost">$0</div>
+          <div class="ov-stat-unit">元</div>
+        </div>
+      </div>
+      <button class="ov-add-btn" onclick="showScreen('travel')">＋ 繼續添加行程</button>
+    </div>
+    <div class="scroll-area">
+      <div class="card">
+        <div class="card-title">碳排來源分析
+          <span class="src-badge" onclick="alert('交通：Google Maps + 環境部\n住宿：行政院環保署\n飲食：農委會食物碳足跡')">資料來源 ℹ</span>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>🚆 交通</span><span class="bar-val" id="bar-trans-val">0 kg</span></div>
+          <div class="bar-track"><div class="bar-fill" id="bar-trans" style="width:0%;background:#4caf6e"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>🏨 住宿</span><span class="bar-val" id="bar-hotel-val">0 kg</span></div>
+          <div class="bar-track"><div class="bar-fill" id="bar-hotel" style="width:0%;background:#3b82f6"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>🍱 飲食</span><span class="bar-val" id="bar-food-val">0 kg</span></div>
+          <div class="bar-track"><div class="bar-fill" id="bar-food" style="width:0%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 行程回顧</div>
+        <div id="ov-review"></div>
+      </div>
+      <div style="padding:14px;padding-top:0">
+        <button class="btn btn-red" onclick="endTrip()">結束旅程 → 產生總報表</button>
+      </div>
+    </div>
+    <nav class="navbar">
+      <button class="nav-item" data-screen="home" onclick="showScreen('home');renderProfile()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg></div>個人</button>
+      <button class="nav-item" data-screen="travel" onclick="showScreen('travel')"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>旅遊</button>
+      <button class="nav-item active" data-screen="overview" onclick="showScreen('overview');updateOverview()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="6" width="4" height="15"/><rect x="17" y="2" width="4" height="19"/></svg></div>總覽</button>
+      <button class="nav-item" data-screen="social" onclick="showScreen('social');renderSocialPage()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>分享</button>
+    </nav>
+  </div>
+
+  <!-- ══ 旅程總報表 ══ -->
+  <div id="report" class="screen">
+    <div class="rp-hero" style="position:relative;overflow:hidden">
+      <div class="rp-report-title">旅遊總報表 🎉</div>
+      <div class="rp-report-divider"></div>
+      <div class="rp-route" id="rp-route"></div>
+      <div class="rp-dates" id="rp-dates"></div>
+      <div class="rp-stat-row">
+        <div class="rp-stat-box rp-stat-box--co2">
+          <div class="rp-stat-num" id="rp-co2">0</div>
+          <div class="rp-stat-unit">kg CO₂</div>
+          <div class="rp-stat-label">總碳排</div>
+        </div>
+        <div class="rp-stat-box rp-stat-box--cost">
+          <div class="rp-stat-num" id="rp-cost">$0</div>
+          <div class="rp-stat-label">總花費</div>
+        </div>
+        <div class="rp-stat-box">
+          <div class="rp-stat-num" id="rp-days">1</div>
+          <div class="rp-stat-unit">天</div>
+          <div class="rp-stat-label">旅遊天數</div>
+        </div>
+        <div class="rp-stat-box rp-stat-box--trees">
+          <div class="rp-stat-num" id="rp-stat-trees">1</div>
+          <div class="rp-stat-unit">棵🌳</div>
+          <div class="rp-stat-label">需種樹</div>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:-6px;right:2px;font-size:52px;opacity:.13;transform:rotate(-20deg);pointer-events:none;line-height:1">🍃</div>
+      <div style="position:absolute;bottom:12px;right:34px;font-size:34px;opacity:.11;transform:rotate(18deg);pointer-events:none;line-height:1">🍃</div>
+    </div>
+    <div class="scroll-area">
+      <div class="card">
+        <div class="card-title">碳排來源占比</div>
+        <div class="rp-chart-wrap">
+          <div class="rp-donut-wrap"><div class="rp-donut" id="rp-donut"></div></div>
+          <div class="rp-legend">
+            <div class="rp-leg-item">
+              <div class="rp-leg-dot" style="background:#4caf6e"></div>
+              <div class="rp-leg-info"><div>🚆 交通</div><div class="rp-leg-co2" id="rp-trans-val">0 kg</div></div>
+              <div class="rp-leg-pct" id="rp-pie-trans">0%</div>
+            </div>
+            <div class="rp-leg-item">
+              <div class="rp-leg-dot" style="background:#3b82f6"></div>
+              <div class="rp-leg-info"><div>🏨 住宿</div><div class="rp-leg-co2" id="rp-hotel-val">0 kg</div></div>
+              <div class="rp-leg-pct" id="rp-pie-hotel">0%</div>
+            </div>
+            <div class="rp-leg-item">
+              <div class="rp-leg-dot" style="background:#f59e0b"></div>
+              <div class="rp-leg-info"><div>🍱 飲食</div><div class="rp-leg-co2" id="rp-food-val">0 kg</div></div>
+              <div class="rp-leg-pct" id="rp-pie-food">0%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">💰 花費明細</div>
+        <div id="rp-expense-list"></div>
+      </div>
+      <div class="card rp-score-card">
+        <div class="rp-score-top">
+          <div class="rp-score-title">低碳評分</div>
+          <div class="rp-score-fraction">
+            <span class="rp-score-big" id="rp-score">0</span>
+            <span class="rp-score-denom"> / 100</span>
+          </div>
+        </div>
+        <div class="rp-score-track"><div class="rp-score-fill" id="rp-score-fill"></div></div>
+        <div class="rp-score-desc" id="rp-score-desc"></div>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden;border:none;background:transparent;box-shadow:none">
+        <div id="rp-trees-block" class="rp-trees-block" style="margin:0;border-radius:14px"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">🏅 本次獲得</div>
+        <div id="rp-achievements" class="rp-ach-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">🤝 合作店家 & 點數</div>
+        <div id="rp-partner-card"></div>
+      </div>
+      <div style="padding:14px;display:flex;flex-direction:column;gap:8px">
+        <button class="btn btn-primary" id="rp-start-btn" onclick="askSharePrompt()">開始新旅程 →</button>
+        <div id="rp-share-prompt" style="display:none;flex-direction:column;gap:8px">
+          <div style="text-align:center;font-size:13px;color:var(--mid);padding:4px 0">要把這趟旅程分享給大家嗎？</div>
+          <button class="btn btn-light" onclick="doShareThenStart()">分享到社群 📢</button>
+          <button class="btn btn-ghost" onclick="doStartWithout()">不分享，直接開始 →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 旅遊分享社群 ══ -->
+  <div id="social" class="screen">
+    <div class="header">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between">
+        <div>
+          <h1>旅遊分享</h1>
+          <p>低碳旅遊社群</p>
+        </div>
+        <button onclick="showScreen('travel')" title="記錄新旅程" style="width:44px;height:44px;border-radius:12px;background:white;border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;padding:0;box-shadow:0 2px 8px rgba(45,94,58,.10);margin-top:2px">
+          <svg width="23" height="23" viewBox="0 0 26 26" fill="none">
+            <circle cx="9" cy="8" r="3.5" fill="var(--primary)"/>
+            <path d="M2 21c0-3.9 3.1-6.5 7-6.5" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <line x1="19" y1="7" x2="19" y2="17" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="14" y1="12" x2="24" y2="12" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="social-tabs">
+        <button class="social-tab active" data-stab="feed" onclick="switchSocialTab('feed')">動態</button>
+        <button class="social-tab" data-stab="rank" onclick="switchSocialTab('rank')">🏆 排行榜</button>
+      </div>
+    </div>
+    <div class="scroll-area">
+      <div id="social-feed-wrap">
+        <div id="social-feed" style="margin-top:10px"></div>
+      </div>
+      <div id="social-rank-wrap" style="display:none">
+        <div class="card" style="margin-top:14px">
+          <div class="card-title">🌿 低碳排行榜 <span style="font-size:10px;color:var(--mid);font-weight:400">（碳排越低排名越前）</span></div>
+          <div id="social-rank"></div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar">
+      <button class="nav-item" data-screen="home" onclick="showScreen('home');renderProfile()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg></div>個人</button>
+      <button class="nav-item" data-screen="travel" onclick="showScreen('travel')"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>旅遊</button>
+      <button class="nav-item" data-screen="overview" onclick="showScreen('overview');updateOverview()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="6" width="4" height="15"/><rect x="17" y="2" width="4" height="19"/></svg></div>總覽</button>
+      <button class="nav-item active" data-screen="social" onclick="showScreen('social');renderSocialPage()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>分享</button>
+    </nav>
+  </div>
+
+  <!-- ══ 景點詳情 ══ -->
+  <div id="spot-detail" class="screen" style="position:relative">
+    <button class="spot-back-btn" onclick="showScreen('travel')">←</button>
+    <div class="scroll-area" id="spot-detail-scroll">
+      <div id="spot-detail-content"></div>
+    </div>
+  </div>
+
+  <!-- ══ 歷史旅程詳情 ══ -->
+  <div id="history-detail" class="screen">
+    <div style="position:absolute;top:10px;left:12px;z-index:10">
+      <button onclick="showScreen('home');renderProfile()" style="background:rgba(255,255,255,.25);border:none;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;color:white;line-height:1;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">←</button>
+    </div>
+    <div class="scroll-area" id="hd-scroll">
+      <div id="hd-content"></div>
+    </div>
+    <nav class="navbar">
+      <button class="nav-item active" data-screen="home" onclick="showScreen('home');renderProfile()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg></div>個人</button>
+      <button class="nav-item" data-screen="travel" onclick="showScreen('travel')"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>旅遊</button>
+      <button class="nav-item" data-screen="overview" onclick="showScreen('overview');updateOverview()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="6" width="4" height="15"/><rect x="17" y="2" width="4" height="19"/></svg></div>總覽</button>
+      <button class="nav-item" data-screen="social" onclick="showScreen('social');renderSocialPage()"><div class="nav-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>分享</button>
+    </nav>
+  </div>
+
+  <!-- ══ 小綠商店 ══ -->
+  <div id="shop" class="screen">
+    <div class="header" style="background:var(--primary);color:white">
+      <div style="display:flex;align-items:center;gap:10px">
+        <button onclick="showScreen('home');renderProfile()" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;padding:0">←</button>
+        <h1 style="color:white">小綠商店</h1>
+      </div>
+      <div style="font-size:12px;opacity:.8;margin-top:4px">選合作店家累積點數，換取環保好禮</div>
+    </div>
+    <div class="scroll-area" style="padding-top:0">
+      <div style="background:var(--primary);padding:20px 16px 28px;margin-bottom:-14px">
+        <div style="font-size:11px;color:rgba(255,255,255,.7);margin-bottom:4px">我的點數</div>
+        <div style="display:flex;align-items:baseline;gap:6px">
+          <div style="font-size:48px;font-weight:900;color:white;line-height:1" id="shop-points">0</div>
+          <div style="font-size:14px;color:rgba(255,255,255,.7)">點</div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:4px">每選擇一次合作店家 +1 點</div>
+      </div>
+      <div style="padding:0 14px 20px">
+        <div style="font-size:12px;font-weight:600;color:var(--mid);padding:18px 0 10px">可兌換獎勵</div>
+        <div id="shop-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 景點彈窗 ══ -->
+  <div id="spots-modal" style="display:none;position:fixed;inset:0;z-index:450;background:rgba(0,0,0,.45);align-items:flex-end;justify-content:center" onclick="if(event.target===this)closeSpotsModal()">
+    <div style="background:white;border-radius:22px 22px 0 0;width:390px;max-height:78vh;display:flex;flex-direction:column">
+      <div style="padding:16px 16px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+        <div id="spots-modal-title" style="font-size:16px;font-weight:700;color:var(--dark)">景點推薦</div>
+        <button onclick="closeSpotsModal()" style="background:var(--bg);border:none;border-radius:50%;width:30px;height:30px;font-size:16px;cursor:pointer;color:var(--mid);display:flex;align-items:center;justify-content:center">✕</button>
+      </div>
+      <div id="spots-modal-content" style="overflow-y:auto;padding:12px 14px 24px;flex:1"></div>
+    </div>
+  </div>
+
+  <!-- ══ AI 小綠 模態抽屜 ══ -->
+  <div id="ai-overlay" class="ai-overlay" style="display:none" onclick="if(event.target===this)closeAIMenu()">
+    <div class="ai-sheet">
+      <div class="ai-handle"></div>
+      <button class="ai-close-btn" onclick="closeAIMenu()">✕</button>
+      <div id="ai-sheet-content"></div>
+    </div>
+  </div>
+  <!-- AI 氣泡提示 -->
+  <div id="ai-bubble" class="ai-bubble"></div>
+</div>
+
+<script>
+function shareTrip() {
+  const t = state.currentTrip;
+  const text = `我完成了一次低碳旅遊！\n${t.origin} → ${t.destination}\n#碳索世界 #低碳旅遊 #GreenTravel`;
+  if (navigator.share) {
+    navigator.share({ title:"碳索世界", text });
+  } else {
+    navigator.clipboard.writeText(text);
+    alert("已複製到剪貼簿！");
+  }
+}
+</script>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
